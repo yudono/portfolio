@@ -47,7 +47,7 @@ const AboutSection: React.FC = () => {
       location: "Indonesia",
       skills: ["React.js", "Node.js", "Tailwind CSS", "TypeScript"],
       description: [t("roleDesc1"), t("roleDesc2"), t("roleDesc3")],
-      logo: "/logos/paideia.png",
+      logo: "/logos/paideia.jpeg",
     },
     {
       company: "PT Digital Agensi Nusantara",
@@ -56,7 +56,7 @@ const AboutSection: React.FC = () => {
       location: "Indonesia",
       skills: ["Node.js", "PHP", "MySQL"],
       description: [],
-      logo: "/logos/digital-agensi.png",
+      logo: "/logos/digyta.webp",
     },
     {
       company: "PT. Garuda Visi Nusantara",
@@ -65,16 +65,16 @@ const AboutSection: React.FC = () => {
       location: "Tangerang Selatan, Banten",
       skills: ["Node.js", "PHP", "Leaflet", "Google Maps API"],
       description: [t("descGaruda")],
-      logo: "/logos/garuda-visi.png",
+      logo: "/logos/gavin.png",
     },
     {
-      company: "Pt Trinindya",
+      company: "Pt Trinindya Utama",
       role: t("internship"),
       period: "Mar 2019 - Mei 2019",
       location: "Jakarta Utara",
       skills: ["PHP", "Laravel", "CodeIgniter"],
       description: [t("descTrinindya")],
-      logo: "/logos/trinindya.png",
+      logo: "/logos/trinindya.jpeg",
     },
   ];
 
@@ -177,7 +177,7 @@ const AboutSection: React.FC = () => {
                   >
                     <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                       <div className="flex gap-5">
-                        <div className="w-14 h-14 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center p-3 shadow-sm group-hover:scale-110 transition-transform duration-500">
+                        <div className="w-14 h-14 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center p-1.5 shadow-sm group-hover:scale-110 transition-transform duration-500">
                           <img
                             src={exp.logo}
                             alt={exp.company}

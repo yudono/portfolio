@@ -19,7 +19,7 @@ const projectsData: Project[] = [
       "Developed a robust Point of Sale (POS) software using Java and NetBeans, featuring product management, sales tracking, invoice generation, and real-time reporting. Designed for efficient retail and inventory management.",
     image: "/images/pos-system.jpg",
     tags: ["Java", "NetBeans", "Desktop Application", "POS"],
-    githubUrl: "https://github.com/yudono",
+    // githubUrl: "https://github.com/yudono",
   },
   {
     id: "2",
@@ -29,7 +29,7 @@ const projectsData: Project[] = [
     image: "/images/itqan-peduli.jpg",
     tags: ["Laravel", "PHP", "MySQL", "Payment Integration"],
     liveUrl: "https://itqanpeduli.com",
-    githubUrl: "https://github.com/yudono",
+    // githubUrl: "https://github.com/yudono",
   },
   {
     id: "3",
@@ -39,7 +39,7 @@ const projectsData: Project[] = [
     image: "/images/hunianyaman.jpg",
     tags: ["WordPress", "PHP", "Property Platform", "Responsive Design"],
     liveUrl: "https://hunianyaman.id",
-    githubUrl: "https://github.com/yudono",
+    // githubUrl: "https://github.com/yudono",
   },
   {
     id: "4",
@@ -48,7 +48,7 @@ const projectsData: Project[] = [
       "Transformed Figma designs into pixel-perfect, responsive HTML landing pages using Tailwind CSS, ensuring design accuracy and cross-browser compatibility.",
     image: "/images/figma-landing.jpg",
     tags: ["HTML", "Tailwind CSS", "Figma", "Responsive Design"],
-    githubUrl: "https://github.com/yudono",
+    // githubUrl: "https://github.com/yudono",
   },
   {
     id: "5",
@@ -57,7 +57,7 @@ const projectsData: Project[] = [
       "Developed a comprehensive fundraising platform for Baitulmaal Muamalah, implementing donation systems, campaign management, and real-time progress tracking.",
     image: "/images/baitulmaal.jpg",
     tags: ["Full Stack", "Laravel", "Server Admin", "Payment Gateway"],
-    githubUrl: "https://github.com/yudono",
+    // githubUrl: "https://github.com/yudono",
   },
   {
     id: "6",
@@ -66,7 +66,36 @@ const projectsData: Project[] = [
       "Built a modern blog and forum platform using Next.js and Tailwind CSS, featuring interactive discussions, dynamic blog layouts, and optimized server-side rendering.",
     image: "/images/blog-forum.jpg",
     tags: ["Next.js", "Tailwind CSS", "React", "Full Stack"],
-    githubUrl: "https://github.com/yudono",
+    // githubUrl: "https://github.com/yudono",
+  },
+  {
+    id: "7",
+    title: "Documind AI",
+    description:
+      "Documind AI is a platform that helps you to create and manage your documents using AI. ",
+    image: "/images/documind-ai.png",
+    tags: ["Next.js", "Tailwind CSS", "React", "Full Stack"],
+    liveUrl: "https://documind.id",
+    // githubUrl: "https://github.com/yudono",
+  },
+  {
+    id: "8",
+    title: "Whazapp AI Chatbot and Payment Automation",
+    description:
+      "Whazapp is an AI chatbot and payment automation platform that helps you to customer service and payment automation ",
+    image: "/images/whazapp.png",
+    tags: ["Next.js", "Tailwind CSS", "React", "Full Stack"],
+    liveUrl: "https://whazapp.online",
+    // githubUrl: "https://github.com/yudono",
+  },
+  {
+    id: "9",
+    title: "Yukasir modern POS",
+    description:
+      "Yukasir is a modern POS system that helps you to create and manage POS and inventory",
+    image: "/images/yukasir.png",
+    tags: ["Next.js", "Tailwind CSS", "React", "Full Stack"],
+    // liveUrl: "https://yukasir.com",
   },
 ];
 

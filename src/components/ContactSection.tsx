@@ -12,26 +12,62 @@ const ContactSection: React.FC = () => {
     "idle" | "submitting" | "success" | "error"
   >("idle");
 
+  const sendToTelegram = async (data: typeof formData) => {
+    const token = import.meta.env.VITE_BOT_API;
+    const chatId = import.meta.env.VITE_CHAT_ID; // User needs to add this to .env
+    
+    if (!token || !chatId) {
+      console.error("Telegram credentials missing in .env");
+      return false;
+    }
+
+    const text = `
+📬 *New Contact Form Message*
+*Name:* ${data.name}
+*Email:* ${data.email}
+*Message:* ${data.message}
+    `;
+
+    try {
+      const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text,
+          parse_mode: "Markdown",
+        }),
+      });
+      return response.ok;
+    } catch (error) {
+      console.error("Telegram error:", error);
+      return false;
+    }
+  };
+
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus("submitting");
 
-    // Simulate form submission
-    setTimeout(() => {
-      setFormStatus("success");
-      // Reset form after success
-      setFormData({ name: "", email: "", message: "" });
+    const success = await sendToTelegram(formData);
 
-      // Reset status after a delay
+    if (success) {
+      setFormStatus("success");
+      setFormData({ name: "", email: "", message: "" });
       setTimeout(() => setFormStatus("idle"), 5000);
-    }, 1500);
+    } else {
+      setFormStatus("error");
+      setTimeout(() => setFormStatus("idle"), 5000);
+    }
   };
 
   return (

@@ -315,32 +315,32 @@ const HeroSection: React.FC = () => {
       {/* 1. HERO + ABOUT SECTION */}
       <section
         id="home"
-        className="min-h-screen flex flex-col justify-center items-center px-4 relative z-10 pt-20"
+        className="min-h-screen flex flex-col justify-center items-center px-4 relative z-10 pt-24 sm:pt-28"
       >
         {/* Top hero text */}
-        <div className="max-w-6xl mx-auto w-full text-center py-12">
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-sans font-bold tracking-tight mb-8 leading-[1.08] text-white">
+        <div className="max-w-6xl mx-auto w-full text-center py-8 sm:py-12">
+          <h1 className="text-4xl sm:text-7xl lg:text-8xl font-sans font-bold tracking-tight mb-6 sm:mb-8 leading-[1.1] sm:leading-[1.08] text-white">
             Ship Scalable Software <br className="hidden sm:inline" />
             with <span className="text-emerald-400">Yudono</span>
           </h1>
 
-          <p className="text-zinc-200 text-sm sm:text-lg max-w-2xl mx-auto mb-12 leading-relaxed font-mono font-medium">
+          <p className="text-zinc-300 text-xs sm:text-lg max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed font-mono font-medium px-2 sm:px-0">
             Fullstack Developer crafting robust web architectures, advanced
             geospatial systems, and seamless Generative AI integrations.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12 sm:mb-16">
             <a
               href="/resume.pdf"
               download="Yudono_Putro_Utomo_Resume.pdf"
-              className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-sans font-bold transition-all rounded duration-200 flex items-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.25)]"
+              className="w-full sm:w-auto px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-sans font-bold transition-all rounded duration-200 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.25)]"
             >
               <span>Download Resume</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>
             <a
               href="#works"
-              className="px-6 py-3 bg-zinc-950/80 border border-zinc-800 hover:border-zinc-700 text-zinc-300 font-sans font-medium transition-all rounded duration-200"
+              className="w-full sm:w-auto px-6 py-3 bg-zinc-950/80 border border-zinc-800 hover:border-zinc-700 text-zinc-300 font-sans font-medium transition-all rounded duration-200 text-center"
             >
               Explore Profile
             </a>
@@ -350,34 +350,34 @@ const HeroSection: React.FC = () => {
         {/* About Me + Photo side by side */}
         <div
           id="about"
-          className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-20"
+          className="max-w-6xl mx-auto w-full px-2 sm:px-6 lg:px-8 pb-16 sm:pb-20"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 sm:gap-10 items-start">
             {/* Photo */}
             <div className="flex justify-center lg:justify-start">
-              <div className="relative group overflow-hidden">
+              <div className="relative group overflow-hidden w-full max-w-[240px] sm:max-w-none">
                 <img
                   src="/my-photos/profile.jpeg"
                   alt="Yudono Putro Utomo"
-                  className="w-56 h-64 object-cover rounded-lg border border-zinc-800 opacity-85 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
+                  className="w-full sm:w-56 h-64 object-cover rounded-lg border border-zinc-800 opacity-85 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
                 />
               </div>
             </div>
 
             {/* About Me Card */}
-            <div className="cyber-panel p-8 sm:p-10 rounded bg-zinc-950/40 border border-zinc-900">
+            <div className="cyber-panel p-5 sm:p-10 rounded bg-zinc-950/40 border border-zinc-900">
               <div className="flex items-center gap-2 pb-4 border-b border-zinc-900 mb-6">
                 <Terminal className="w-4 h-4 text-emerald-400 animate-pulse" />
-                <span className="font-mono font-bold text-emerald-400 uppercase text-xs tracking-widest">
+                <span className="font-mono font-bold text-emerald-400 uppercase text-[10px] sm:text-xs tracking-widest">
                   // TELEMETRY_PROFILE_handshake.exe
                 </span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl font-sans font-bold mb-6 text-white">
+              <h2 className="text-xl sm:text-3xl font-sans font-bold mb-4 sm:mb-6 text-white">
                 {t("about")}
               </h2>
 
-              <p className="text-zinc-300 text-sm sm:text-base font-sans leading-relaxed whitespace-pre-line">
+              <p className="text-zinc-350 text-xs sm:text-base font-sans leading-relaxed whitespace-pre-line">
                 {t("aboutMeContent")}
               </p>
             </div>
@@ -1026,7 +1026,7 @@ const HeroSection: React.FC = () => {
             </div>
 
             {/* Content */}
-            <div className="p-8">
+            <div className="p-5 sm:p-8">
               {/* Category badge */}
               <span className="inline-block text-[10px] font-mono text-emerald-400 border border-emerald-500/20 bg-emerald-950/10 px-2 py-0.5 mb-4 uppercase rounded">
                 {selectedProject.category}
@@ -1047,16 +1047,22 @@ const HeroSection: React.FC = () => {
               </p>
 
               {/* Details list */}
-              {selectedProject.details && selectedProject.details.length > 0 && (
-                <ul className="space-y-2 mb-6">
-                  {selectedProject.details.map((detail, i) => (
-                    <li key={i} className="flex items-start gap-2 text-zinc-400 text-sm font-sans">
-                      <span className="text-emerald-400 mt-1 shrink-0">›</span>
-                      <span>{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              {selectedProject.details &&
+                selectedProject.details.length > 0 && (
+                  <ul className="space-y-2 mb-6">
+                    {selectedProject.details.map((detail, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 text-zinc-400 text-sm font-sans"
+                      >
+                        <span className="text-emerald-400 mt-1 shrink-0">
+                          ›
+                        </span>
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
               {/* Tech stack */}
               <div className="flex flex-wrap gap-1.5 mb-6">
@@ -1072,7 +1078,9 @@ const HeroSection: React.FC = () => {
 
               {/* Footer */}
               <div className="flex justify-between items-center pt-4 border-t border-zinc-900 text-xs font-mono">
-                <span className="text-zinc-500">ROLE: {selectedProject.role}</span>
+                <span className="text-zinc-500">
+                  ROLE: {selectedProject.role}
+                </span>
                 {selectedProject.liveUrl && (
                   <a
                     href={selectedProject.liveUrl}

@@ -504,7 +504,7 @@ const ProjectsPage: React.FC = () => {
               />
             </div>
 
-            <div className="p-8">
+            <div className="p-5 sm:p-8">
               <span className="inline-block text-[10px] font-mono text-emerald-400 border border-emerald-500/20 bg-emerald-950/10 px-2 py-0.5 mb-4 uppercase rounded">
                 {selectedProject.category}
               </span>

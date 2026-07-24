@@ -77,8 +77,8 @@ const allProjects: ProjectItem[] = [
       "REST API",
     ],
     role: "Core Contributor",
-    image: IMG,
     period: "Sep 2022 – Present",
+    image: "/images/gurukreator.png",
     details: [
       "Contributed to a large-scale SaaS learning management platform supporting educational institutions.",
       "Developed reporting systems, curriculum management modules, and AI-powered lesson plan generation.",
@@ -93,6 +93,7 @@ const allProjects: ProjectItem[] = [
     skills: ["Laravel", "MySQL", "Vue.js", "Payment Gateway", "VPS"],
     role: "Fullstack Developer",
     period: "Sep 2021 – Sep 2022",
+    image: "/images/mediaberbagi.png",
     details: [
       "Developed a crowdfunding platform supporting multiple organizations and fundraising campaigns.",
       "Implemented multi-tenant architecture, payment workflows, campaign management, and administrative dashboards.",
@@ -126,6 +127,7 @@ const allProjects: ProjectItem[] = [
       "Provincial Government Digital UMKM Platform — Developed frontend features for a government platform supporting MSMEs and digital business services.",
     skills: ["TypeScript", "JavaScript", "React.js", "Redux", "REST API"],
     role: "Frontend Developer",
+    image: "/images/tabe-kalteng.png",
     period: "2022",
     details: [
       "Developed frontend features for a government platform supporting MSMEs and digital business services.",
@@ -141,6 +143,9 @@ const allProjects: ProjectItem[] = [
       "Disaster Risk Management Mobile Application — Developed a mobile application focused on disaster preparedness and risk management. Awarded 3rd Place in the Inarisk BNPB National Hackathon 2021.",
     skills: ["Flutter", "Unity", "C#", "Dart", "Mobile Development", "GIS"],
     role: "Developer",
+    image: "/images/gsquad.jpg",
+    liveUrl:
+      "https://www.undp.org/asia-pacific/news/inarisk-hackathon-fest-2021-innovation-inclusive-disaster-risk-reduction",
     period: "Oct 2021",
     details: [
       "Developed a mobile application focused on disaster preparedness and risk management.",
@@ -155,7 +160,8 @@ const allProjects: ProjectItem[] = [
     description: "News & article portal.",
     skills: ["PHP", "Laravel", "MySQL", "JavaScript"],
     role: "Fullstack Developer",
-    image: "/images/blog-forum.jpg",
+    image: "/images/banuainfo.png",
+    liveUrl: "https://banua.info",
     period: "2022",
     groupLabel: "Content & Community Platforms",
   },
@@ -165,7 +171,7 @@ const allProjects: ProjectItem[] = [
     description: "Articles & discussion forum.",
     skills: ["PHP", "Laravel", "MySQL", "JavaScript"],
     role: "Fullstack Developer",
-    image: "/images/blog-forum.jpg",
+    image: "/images/occiolism.png",
     period: "2023",
   },
   {
@@ -213,7 +219,7 @@ const allProjects: ProjectItem[] = [
     description: "MDIN.BMM.or.id — Bank Muamalat microsite.",
     skills: ["Laravel", "Vue.js", "PHP", "MySQL", "REST API"],
     role: "Fullstack Developer",
-    image: "/images/baitulmaal.jpg",
+    image: "/images/mdin.png",
     period: "2024",
   },
   {
@@ -231,7 +237,7 @@ const allProjects: ProjectItem[] = [
     description: "BerkahBerjamaah.com — Crowdfunding platform.",
     skills: ["Laravel", "Vue.js", "PHP", "MySQL"],
     role: "Fullstack Developer",
-    image: IMG,
+    image: "/images/berkah-berjamaah.png",
     period: "2023",
   },
   {

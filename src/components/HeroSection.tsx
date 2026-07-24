@@ -25,10 +25,18 @@ interface ProjectItem {
   skills: string[];
   role: string;
   liveUrl?: string;
+  image?: string;
+  period?: string;
+  details?: string[];
 }
 
 const HeroSection: React.FC = () => {
   const { t } = useLanguage();
+
+  // Modal state for project detail
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(
+    null,
+  );
 
   // Contact Form State
   const [formData, setFormData] = useState({
@@ -248,54 +256,31 @@ const HeroSection: React.FC = () => {
     },
   ];
 
-  const skillCategories = [
-    {
-      name: "Frontend Ecosystem",
-      items: [
-        "React.js",
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Shadcn UI",
-        "Vue.js",
-        "Redux",
-        "Vite",
-      ],
-    },
-    {
-      name: "AI Integration & Languages",
-      items: [
-        "Generative AI Integration",
-        "Meta Llama SDK",
-        "Python",
-        "JavaScript (ES6+)",
-        "PHP",
-        "Java",
-      ],
-    },
-    {
-      name: "Backend & Mapping",
-      items: [
-        "FastAPI",
-        "Express.js",
-        "Laravel",
-        "Falcon",
-        "GIS Mapping (Leaflet, GMaps)",
-        "PonyORM",
-        "RESTful API Design",
-      ],
-    },
-    {
-      name: "Infrastructure & Tools",
-      items: [
-        "Linux / VPS Setup",
-        "Docker",
-        "Git / GitHub Actions",
-        "MySQL",
-        "PostgreSQL",
-        "MongoDB",
-      ],
-    },
+  // Skills lists with local brand logos
+  const skillsRow1 = [
+    { name: "React.js", logo: "/assets/logos/reactjs.png" },
+    { name: "Next.js", logo: "/assets/logos/nextjs.png" },
+    { name: "TypeScript", logo: "/assets/logos/typescript.png" },
+    { name: "Tailwind CSS", logo: "/assets/logos/tailwindcss.png" },
+    { name: "Shadcn UI", logo: "/assets/logos/shadcnui.png" },
+    { name: "Vue.js", logo: "/assets/logos/vuejs.png" },
+    { name: "Redux", logo: "/assets/logos/redux.png" },
+    { name: "Vite", logo: "/assets/logos/vite.png" },
+    { name: "Python", logo: "/assets/logos/python.png" },
+    { name: "Java", logo: "/assets/logos/java.png" },
+  ];
+
+  const skillsRow2 = [
+    { name: "FastAPI", logo: "/assets/logos/fastapi.png" },
+    { name: "Express.js", logo: "/assets/logos/expressjs.png" },
+    { name: "Laravel", logo: "/assets/logos/laravel.png" },
+    { name: "Falcon", logo: "/assets/logos/falcon.png" },
+    { name: "Git", logo: "/assets/logos/git.png" },
+    { name: "PostgreSQL", logo: "/assets/logos/postgresql.png" },
+    { name: "MySQL", logo: "/assets/logos/mysql.png" },
+    { name: "MongoDB", logo: "/assets/logos/mongodb.png" },
+    { name: "Docker", logo: "/assets/logos/docker.png" },
+    { name: "Linux", logo: "/assets/logos/linux.png" },
   ];
 
   return (
@@ -327,24 +312,24 @@ const HeroSection: React.FC = () => {
       <div className="absolute top-[5%] left-[25%] w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none z-0"></div>
       <div className="absolute top-[40%] right-[10%] w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[140px] pointer-events-none z-0"></div>
 
-      {/* 1. HERO SECTION (Ship Faster with TRAE Style) */}
+      {/* 1. HERO + ABOUT SECTION */}
       <section
         id="home"
         className="min-h-screen flex flex-col justify-center items-center px-4 relative z-10 pt-20"
       >
-        <div className="max-w-6xl mx-auto w-full text-center py-20">
+        {/* Top hero text */}
+        <div className="max-w-6xl mx-auto w-full text-center py-12">
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-sans font-bold tracking-tight mb-8 leading-[1.08] text-white">
             Ship Scalable Software <br className="hidden sm:inline" />
             with <span className="text-emerald-400">Yudono</span>
           </h1>
 
-          <p className="text-zinc-200 text-sm sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-mono font-medium">
-            Fullstack & Frontend Engineer crafting robust web architectures,
-            advanced geospatial systems, and seamless Generative AI
-            integrations.
+          <p className="text-zinc-200 text-sm sm:text-lg max-w-2xl mx-auto mb-12 leading-relaxed font-mono font-medium">
+            Fullstack Developer crafting robust web architectures, advanced
+            geospatial systems, and seamless Generative AI integrations.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 mb-16">
             <a
               href="/resume.pdf"
               download="Yudono_Putro_Utomo_Resume.pdf"
@@ -357,8 +342,45 @@ const HeroSection: React.FC = () => {
               href="#works"
               className="px-6 py-3 bg-zinc-950/80 border border-zinc-800 hover:border-zinc-700 text-zinc-300 font-sans font-medium transition-all rounded duration-200"
             >
-              Explore Works
+              Explore Profile
             </a>
+          </div>
+        </div>
+
+        {/* About Me + Photo side by side */}
+        <div
+          id="about"
+          className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 pb-20"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 items-start">
+            {/* Photo */}
+            <div className="flex justify-center lg:justify-start">
+              <div className="relative group overflow-hidden">
+                <img
+                  src="/my-photos/profile.jpeg"
+                  alt="Yudono Putro Utomo"
+                  className="w-56 h-64 object-cover rounded-lg border border-zinc-800 opacity-85 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
+                />
+              </div>
+            </div>
+
+            {/* About Me Card */}
+            <div className="cyber-panel p-8 sm:p-10 rounded bg-zinc-950/40 border border-zinc-900">
+              <div className="flex items-center gap-2 pb-4 border-b border-zinc-900 mb-6">
+                <Terminal className="w-4 h-4 text-emerald-400 animate-pulse" />
+                <span className="font-mono font-bold text-emerald-400 uppercase text-xs tracking-widest">
+                  // TELEMETRY_PROFILE_handshake.exe
+                </span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl font-sans font-bold mb-6 text-white">
+                {t("about")}
+              </h2>
+
+              <p className="text-zinc-300 text-sm sm:text-base font-sans leading-relaxed whitespace-pre-line">
+                {t("aboutMeContent")}
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -422,12 +444,12 @@ const HeroSection: React.FC = () => {
               </a>
             </div>
 
-            {/* Right side graphical showcase frame */}
-            <div className="relative group overflow-hidden mx-auto aspect-[4/5] shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+            {/* Right side project image */}
+            <div className="relative group overflow-hidden mx-auto aspect-[4/3] rounded-lg border border-zinc-800 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
               <img
-                src="/my-photos/profile.jpeg"
-                alt="Yudono Putro Utomo"
-                className="w-auto h-64 object-cover opacity-85 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500 rounded-lg border border-zinc-800"
+                src="/images/documind-ai.png"
+                alt="Documind AI & LLMs"
+                className="w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-500"
               />
             </div>
           </div>
@@ -442,26 +464,37 @@ const HeroSection: React.FC = () => {
                   PROJECT REPOSITORY
                 </span>
                 <h3 className="text-xl sm:text-2xl font-sans font-bold text-white mt-2">
-                  Other Architectures & Systems
+                  Best Project
                 </h3>
               </div>
 
-              {/* Slider Controls */}
-              <div className="flex gap-2">
-                <button
-                  onClick={scrollLeft}
-                  className="w-10 h-10 border border-zinc-800 hover:border-zinc-755 rounded bg-zinc-950/50 flex items-center justify-center text-zinc-400 hover:text-emerald-400 transition-colors"
-                  aria-label="Previous Project"
+              <div className="flex items-center gap-3">
+                {/* Load More button */}
+                <a
+                  href="/projects"
+                  className="text-[10px] font-mono text-emerald-400 border border-emerald-500/20 bg-emerald-950/20 px-4 py-2 rounded hover:bg-emerald-950/40 hover:border-emerald-500/40 transition-all uppercase tracking-wider flex items-center gap-1.5"
                 >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={scrollRight}
-                  className="w-10 h-10 border border-zinc-800 hover:border-zinc-755 rounded bg-zinc-950/50 flex items-center justify-center text-zinc-400 hover:text-emerald-400 transition-colors"
-                  aria-label="Next Project"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
+                  <span>Load More</span>
+                  <ArrowUpRight className="w-3 h-3" />
+                </a>
+
+                {/* Slider Controls */}
+                <div className="flex gap-2">
+                  <button
+                    onClick={scrollLeft}
+                    className="w-10 h-10 border border-zinc-800 hover:border-zinc-755 rounded bg-zinc-950/50 flex items-center justify-center text-zinc-400 hover:text-emerald-400 transition-colors"
+                    aria-label="Previous Project"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={scrollRight}
+                    className="w-10 h-10 border border-zinc-800 hover:border-zinc-755 rounded bg-zinc-950/50 flex items-center justify-center text-zinc-400 hover:text-emerald-400 transition-colors"
+                    aria-label="Next Project"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -476,7 +509,8 @@ const HeroSection: React.FC = () => {
               {projects.map((proj, idx) => (
                 <div
                   key={idx}
-                  className="flex-shrink-0 w-full sm:w-[360px] border border-zinc-800 hover:border-emerald-500/40 rounded bg-zinc-950/40 backdrop-blur-md p-6 min-h-[300px] flex flex-col justify-between hover:bg-zinc-950/60 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
+                  onClick={() => setSelectedProject(proj)}
+                  className="flex-shrink-0 w-full sm:w-[360px] border border-zinc-800 hover:border-emerald-500/40 rounded bg-zinc-950/40 backdrop-blur-md p-6 min-h-[300px] flex flex-col justify-between hover:bg-zinc-950/60 transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.3)] cursor-pointer"
                   style={{ scrollSnapAlign: "start" }}
                 >
                   <div>
@@ -533,66 +567,71 @@ const HeroSection: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. EXPERIENCE TIMELINE */}
+      {/* 3. EXPERIENCE TIMELINE (TRAE Changelog Style) */}
       <section
         id="timeline"
         className="py-24 border-t border-zinc-900 px-4 relative z-10"
       >
-        <div className="max-w-6xl mx-auto w-full">
+        <div className="max-w-4xl mx-auto w-full">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-5xl font-sans font-bold mb-4 text-white">
-              Timeline & Deployments
+            <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest bg-emerald-950/20 border border-emerald-500/10 px-2.5 py-1 rounded">
+              CHANGELOG
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-sans font-bold mt-4 mb-3 text-white">
+              What's <span className="text-emerald-400">NEW</span> in Yudono
             </h2>
-            <p className="text-zinc-400 text-xs sm:text-sm font-mono uppercase tracking-widest">
-              Professional software deployment milestones
+            <p className="text-zinc-400 text-xs sm:text-sm font-sans">
+              Updates, milestones, and deployment history.
             </p>
           </div>
 
-          {/* Timeline Node Chain */}
-          <div className="relative border-l border-zinc-800 ml-4 md:ml-6 space-y-12">
+          {/* Timeline Node Chain - TRAE Changelog Style */}
+          <div className="relative border-l border-zinc-800 ml-4 sm:ml-40 space-y-16 mb-20">
             {experiences.map((exp, idx) => (
-              <div key={idx} className="relative pl-8 md:pl-10 group">
+              <div key={idx} className="relative pl-6 sm:pl-8 group">
                 {/* Timeline Dot Indicator */}
-                <div className="absolute -left-[6px] top-1.5 w-3 h-3 rounded-full border border-emerald-500 bg-black group-hover:bg-emerald-400 transition-colors duration-300 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                <div className="absolute -left-[4px] top-1.5 w-2 h-2 bg-white group-hover:bg-emerald-400 transition-colors duration-300 shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
 
-                <div className="cyber-panel p-6 rounded bg-zinc-950/20 hover:border-zinc-800 transition-all flex flex-col justify-between">
-                  <div>
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-4">
-                      <div>
-                        <h4 className="text-lg font-sans font-bold text-white mb-1">
-                          {exp.role}
-                        </h4>
-                        <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
-                          <Briefcase className="w-3.5 h-3.5 text-emerald-500" />
-                          <span>{exp.company}</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-1.5 text-[9px] font-mono text-emerald-400 border border-emerald-500/20 bg-emerald-950/10 px-2.5 py-0.5 rounded self-start">
-                        <Calendar className="w-3 h-3" />
-                        <span>{exp.period}</span>
-                      </div>
-                    </div>
-
-                    <div className="space-y-2 mb-6">
-                      {exp.description.map((desc, i) => (
-                        <div
-                          key={i}
-                          className="flex gap-2 text-xs text-zinc-400 leading-relaxed font-sans"
-                        >
-                          <span className="text-emerald-400 shrink-0">
-                            &gt;
-                          </span>
-                          <p>{desc}</p>
-                        </div>
-                      ))}
-                    </div>
+                {/* Left Side Metadata (Absolute layout on sm screens and larger) */}
+                <div className="sm:absolute sm:right-[100%] sm:mr-8 sm:top-0 sm:text-right mb-4 sm:mb-0 w-32 flex-shrink-0">
+                  <div className="text-emerald-400 font-bold font-mono text-sm tracking-wide">
+                    {exp.period.split(" - ")[0]}
                   </div>
+                  <div className="mt-1 flex sm:justify-end gap-1.5 text-[9px] font-mono">
+                    <span className="bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 text-zinc-400 rounded-sm">
+                      {idx === 0
+                        ? "CURRENT"
+                        : `v${(experiences.length - idx).toFixed(1)}`}
+                    </span>
+                    <span className="bg-zinc-900 border border-zinc-800 px-1.5 py-0.5 text-zinc-400 rounded-sm uppercase">
+                      {exp.company.split(" ")[0]}
+                    </span>
+                  </div>
+                </div>
 
-                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-zinc-900">
+                {/* Right Side Content (Bullet Points) */}
+                <div className="font-sans">
+                  <h4 className="text-base font-bold text-white mb-1">
+                    {exp.role}{" "}
+                    <span className="text-zinc-500 font-normal">at</span>{" "}
+                    <span className="text-emerald-400 font-semibold">
+                      {exp.company}
+                    </span>
+                  </h4>
+                  <ul className="space-y-3 mt-4 text-xs text-zinc-400 list-disc list-outside pl-4">
+                    {exp.description.map((desc, i) => (
+                      <li key={i} className="leading-relaxed">
+                        {desc}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Skills tags embedded beneath bullet points */}
+                  <div className="flex flex-wrap gap-1.5 mt-4 pt-3 border-t border-zinc-900/50">
                     {exp.skills.map((skill, i) => (
                       <span
                         key={i}
-                        className="px-2 py-0.5 bg-zinc-950 border border-zinc-900 text-[9px] font-mono text-zinc-500 uppercase"
+                        className="px-1.5 py-0.5 bg-zinc-950 border border-zinc-900 text-[9px] font-mono text-zinc-500 uppercase rounded-sm"
                       >
                         {skill}
                       </span>
@@ -602,48 +641,234 @@ const HeroSection: React.FC = () => {
               </div>
             ))}
           </div>
+
+          {/* Education Sub-section (TRAE Table Style) */}
+          <div className="pt-16 border-t border-zinc-900">
+            <div className="max-w-3xl mx-auto">
+              <h3 className="text-2xl sm:text-3xl font-sans font-bold text-white mb-12">
+                {t("education")}
+              </h3>
+
+              {/* Education Rows (TRAE Table style) */}
+              <div className="space-y-12">
+                {/* Row 1: Raharja */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 pb-10 border-b border-zinc-900 last:border-none">
+                  {/* Left Column: School Title & Metadata */}
+                  <div className="md:col-span-1">
+                    <h4 className="text-lg font-sans font-bold text-white leading-tight">
+                      Universitas Raharja
+                    </h4>
+                    <span className="inline-block mt-2 text-[9px] font-mono text-zinc-400 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded-sm uppercase">
+                      2023 - 2027
+                    </span>
+                    <div className="mt-1 text-[10px] font-mono text-emerald-400">
+                      STUDYING
+                    </div>
+                  </div>
+
+                  {/* Right Column: Major & Details */}
+                  <div className="md:col-span-2 space-y-3 font-sans">
+                    <h5 className="text-sm font-bold text-white flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                      {t("bachelor")}
+                    </h5>
+                    <p className="text-xs text-zinc-400 leading-relaxed pl-3.5">
+                      {t("stillStudying").replace("2023 – 2027 • ", "")}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Row 2: SMKN 5 */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 pb-10 border-b border-zinc-900 last:border-none">
+                  {/* Left Column: School Title & Metadata */}
+                  <div className="md:col-span-1">
+                    <h4 className="text-lg font-sans font-bold text-white leading-tight">
+                      SMKN 5 Kota Tangerang
+                    </h4>
+                    <span className="inline-block mt-2 text-[9px] font-mono text-zinc-400 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded-sm uppercase">
+                      2018 - 2020
+                    </span>
+                    <div className="mt-1 text-[10px] font-mono text-zinc-500">
+                      GRADUATED
+                    </div>
+                  </div>
+
+                  {/* Right Column: Major & Details */}
+                  <div className="md:col-span-2 space-y-3 font-sans">
+                    <h5 className="text-sm font-bold text-white flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                      {t("highSchool")}
+                    </h5>
+                    <p className="text-xs text-zinc-400 leading-relaxed pl-3.5">
+                      {t("highSchoolDesc").replace("2018 – 2020 • ", "")}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 4. SKILLS & CAPABILITIES (What You'll Unlock with TRAE style) */}
+      {/* 4. SKILLS & CAPABILITIES (TRAE Infinite Marquee style) */}
       <section
         id="tech-stack"
-        className="py-24 border-t border-zinc-900 px-4 relative z-10"
+        className="py-24 border-t border-zinc-900 relative z-10 overflow-hidden w-full"
       >
-        <div className="max-w-6xl mx-auto w-full">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-5xl font-sans font-bold mb-4 text-white">
-              What Yudono Brings
-            </h2>
-            <p className="text-zinc-400 text-xs sm:text-sm font-mono uppercase tracking-widest">
-              Core frameworks, systems mapping & tool configurations
-            </p>
+        <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 mb-16 text-center">
+          <h2 className="text-3xl sm:text-5xl font-sans font-bold mb-4 text-white">
+            What Yudono Brings
+          </h2>
+          <p className="text-zinc-400 text-xs sm:text-sm font-sans">
+            Core frameworks, systems mapping & tool configurations.
+          </p>
+        </div>
+
+        {/* Marquee Content Section */}
+        <div className="space-y-6 w-full relative pause-marquee mb-24">
+          {/* Row 1: Left to Right */}
+          <div className="relative w-full flex overflow-hidden border-y border-zinc-900/60 bg-zinc-950/20 py-4">
+            <div className="flex gap-6 animate-marquee-ltr shrink-0 whitespace-nowrap min-w-full">
+              {/* Render items twice for seamless loop */}
+              {[...skillsRow1, ...skillsRow1, ...skillsRow1].map(
+                (skill, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-3 border border-zinc-800 bg-zinc-950/60 backdrop-blur-md px-6 py-3.5 rounded shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:border-emerald-500/30 transition-all duration-300 min-w-[170px]"
+                  >
+                    <img
+                      src={skill.logo}
+                      alt={`${skill.name} logo`}
+                      width={24}
+                      height={24}
+                      className="rounded"
+                      loading="lazy"
+                    />
+                    <span className="font-mono text-xs text-zinc-200 tracking-tight">
+                      {skill.name}
+                    </span>
+                  </div>
+                ),
+              )}
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skillCategories.map((cat, idx) => (
-              <div
-                key={idx}
-                className="cyber-panel p-6 rounded bg-zinc-950/40 hover:border-zinc-800 transition-all"
-              >
-                <div className="flex items-center gap-2 pb-3 border-b border-zinc-900 mb-4">
-                  <Code className="w-4 h-4 text-emerald-400" />
-                  <span className="text-[10px] font-mono text-emerald-400 font-bold uppercase tracking-wider">
-                    {cat.name}
-                  </span>
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {cat.items.map((item, i) => (
-                    <span
-                      key={i}
-                      className="px-2 py-1 bg-zinc-950 border border-zinc-900 text-[10px] font-mono text-zinc-300 rounded-sm"
-                    >
-                      {item}
+          {/* Row 2: Right to Left */}
+          <div className="relative w-full flex overflow-hidden border-y border-zinc-900/60 bg-zinc-950/20 py-4">
+            <div
+              className="flex gap-6 animate-marquee-rtl shrink-0 whitespace-nowrap min-w-full"
+              style={{ "--speed": "40s" } as React.CSSProperties}
+            >
+              {[...skillsRow2, ...skillsRow2, ...skillsRow2].map(
+                (skill, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-3 border border-zinc-800 bg-zinc-950/60 backdrop-blur-md px-6 py-3.5 rounded shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:border-emerald-500/30 transition-all duration-300 min-w-[170px]"
+                  >
+                    <img
+                      src={skill.logo}
+                      alt={`${skill.name} logo`}
+                      width={24}
+                      height={24}
+                      className="rounded"
+                      loading="lazy"
+                    />
+                    <span className="font-mono text-xs text-zinc-200 tracking-tight">
+                      {skill.name}
                     </span>
-                  ))}
+                  </div>
+                ),
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+          {/* Certifications Sub-section */}
+          <div className="pt-16 border-t border-zinc-900">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl sm:text-3xl font-sans font-bold mb-3 text-white">
+                {t("certifications")}
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {[
+                {
+                  title:
+                    "Meta Llama Hackathon 2025 — Top 50 Finalist (Rank #12)",
+                  org: "Hacktiv8 x Meta Llama | Indonesia",
+                  date: "Nov 2025",
+                  desc: "Ranked 12th nationally. Developed AI-powered solutions utilizing Meta Llama LLMs.",
+                  cred: "51c7a339-a471-496f-a9aa-43fce73bfa9a",
+                },
+                {
+                  title: "Hackathon IMPHEN 2025 — Participant Recognition",
+                  org: "IMPHEN | Indonesia",
+                  date: "Dec 2025",
+                  desc: "Developed innovative AI solutions focused on LLMs and Generative AI technologies.",
+                },
+                {
+                  title: "Machine Learning Workshop Certificate",
+                  org: "Universitas Raharja | Indonesia",
+                  date: "Apr 2025",
+                  desc: "Covered Machine Learning fundamentals, predictive modeling, and AI applications.",
+                },
+                {
+                  title: "EF SET English Certificate (B2 Upper Intermediate)",
+                  org: "EF Standard English Test (EF SET) | International",
+                  date: "Jul 2024",
+                  desc: "Achieved a score of 53/100. Certified English proficiency at B2 Upper Intermediate level.",
+                },
+                {
+                  title: "TOEFL Certificate (RCEP 184)",
+                  org: "Universitas Raharja | Indonesia",
+                  date: "Apr 2026",
+                  desc: "RCEP 184 TOEFL assessment.",
+                  cred: "7416/RCEP/RU/IV/2026 (Valid through Dec 2036)",
+                },
+                {
+                  title: "Hackathon Inarisk BNPB 2021 — 3rd Place Winner",
+                  org: "National Disaster Management Agency (BNPB) | Indonesia",
+                  date: "Oct 2021",
+                  desc: "Developed a mobile application focused on disaster risk management.",
+                  cred: "461/BNPB/D-I/SS.03.01/10/2021",
+                },
+                {
+                  title: "Tangerang City Skills Competition (LKS) — 2nd Place",
+                  org: "Web Design & Development Category | Indonesia",
+                  date: "Jan 2020",
+                  desc: "City-level vocational skills competition. Demonstrated proficiency in web design and frontend technologies.",
+                },
+              ].map((cert, cIdx) => (
+                <div
+                  key={cIdx}
+                  className="cyber-panel p-5 rounded bg-zinc-950/20 border border-zinc-900 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex justify-between items-start gap-3 mb-2">
+                      <h4 className="text-sm font-sans font-bold text-white leading-snug">
+                        {cert.title}
+                      </h4>
+                      <span className="text-[9px] font-mono text-emerald-400 bg-emerald-950/15 border border-emerald-500/10 px-2 py-0.5 rounded shrink-0">
+                        {cert.date}
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono text-zinc-500 block mb-2">
+                      {cert.org}
+                    </span>
+                    <p className="text-zinc-400 text-xs font-sans leading-relaxed">
+                      {cert.desc}
+                    </p>
+                  </div>
+                  {cert.cred && (
+                    <div className="mt-3 pt-3 border-t border-zinc-900 text-[9px] font-mono text-zinc-650">
+                      CREDENTIAL_ID: {cert.cred}
+                    </div>
+                  )}
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -768,6 +993,102 @@ const HeroSection: React.FC = () => {
           </a>
         </div>
       </section>
+
+      {/* PROJECT DETAIL MODAL */}
+      {selectedProject && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8"
+          onClick={() => setSelectedProject(null)}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+
+          {/* Modal Content */}
+          <div
+            className="relative bg-zinc-950 border border-zinc-800 rounded-lg w-full max-w-3xl max-h-[85vh] overflow-y-auto shadow-[0_0_60px_rgba(0,0,0,0.8)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center text-zinc-500 hover:text-white border border-zinc-800 hover:border-zinc-600 rounded bg-zinc-950/80 transition-colors"
+            >
+              ✕
+            </button>
+
+            {/* Project Image */}
+            <div className="w-full aspect-video bg-zinc-900 border-b border-zinc-800 overflow-hidden">
+              <img
+                src={selectedProject.image || "/images/placeholder-project.png"}
+                alt={selectedProject.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Content */}
+            <div className="p-8">
+              {/* Category badge */}
+              <span className="inline-block text-[10px] font-mono text-emerald-400 border border-emerald-500/20 bg-emerald-950/10 px-2 py-0.5 mb-4 uppercase rounded">
+                {selectedProject.category}
+              </span>
+
+              <h3 className="text-2xl sm:text-3xl font-sans font-bold text-white mb-2">
+                {selectedProject.title}
+              </h3>
+
+              {selectedProject.period && (
+                <p className="text-zinc-500 text-xs font-mono mb-4">
+                  {selectedProject.period}
+                </p>
+              )}
+
+              <p className="text-zinc-300 text-sm font-sans leading-relaxed mb-6">
+                {selectedProject.description}
+              </p>
+
+              {/* Details list */}
+              {selectedProject.details && selectedProject.details.length > 0 && (
+                <ul className="space-y-2 mb-6">
+                  {selectedProject.details.map((detail, i) => (
+                    <li key={i} className="flex items-start gap-2 text-zinc-400 text-sm font-sans">
+                      <span className="text-emerald-400 mt-1 shrink-0">›</span>
+                      <span>{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {/* Tech stack */}
+              <div className="flex flex-wrap gap-1.5 mb-6">
+                {selectedProject.skills.map((skill, i) => (
+                  <span
+                    key={i}
+                    className="text-[10px] font-mono bg-zinc-900 border border-zinc-800 px-2.5 py-1 text-zinc-400 rounded"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+
+              {/* Footer */}
+              <div className="flex justify-between items-center pt-4 border-t border-zinc-900 text-xs font-mono">
+                <span className="text-zinc-500">ROLE: {selectedProject.role}</span>
+                {selectedProject.liveUrl && (
+                  <a
+                    href={selectedProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-emerald-400 hover:text-emerald-300 font-bold uppercase transition-colors flex items-center gap-1"
+                  >
+                    <span>LIVE_UPLINK</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

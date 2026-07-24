@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Cpu, Download } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [time, setTime] = useState("");
   const { t } = useLanguage();
+  const isProjectsPage = window.location.pathname === "/projects";
 
   useEffect(() => {
     const updateTime = () => {
@@ -22,12 +23,13 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: "HOME", href: "#home", code: "00" },
-    { name: "ABOUT", href: "#about", code: "01" },
-    { name: "WORKS", href: "#works", code: "02" },
-    { name: "TIMELINE", href: "#timeline", code: "03" },
-    { name: "TECH STACK", href: "#tech-stack", code: "04" },
-    { name: "CONTACT", href: "#contact", code: "05" },
+    { name: "HOME", href: isProjectsPage ? "/#home" : "#home", code: "00" },
+    { name: "ABOUT", href: isProjectsPage ? "/#about" : "#about", code: "01" },
+    { name: "WORKS", href: isProjectsPage ? "/#works" : "#works", code: "02" },
+    { name: "PROJECTS", href: "/projects", code: "03" },
+    { name: "TIMELINE", href: isProjectsPage ? "/#timeline" : "#timeline", code: "04" },
+    { name: "TECH STACK", href: isProjectsPage ? "/#tech-stack" : "#tech-stack", code: "05" },
+    { name: "CONTACT", href: isProjectsPage ? "/#contact" : "#contact", code: "06" },
   ];
 
   return (

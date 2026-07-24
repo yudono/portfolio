@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ArrowLeft } from "lucide-react";
 import Navbar from "../components/Navbar";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -77,7 +77,7 @@ const allProjects: ProjectItem[] = [
       "REST API",
     ],
     role: "Core Contributor",
-    image: "/images/guru-kreator.png",
+    image: IMG,
     period: "Sep 2022 – Present",
     details: [
       "Contributed to a large-scale SaaS learning management platform supporting educational institutions.",
@@ -369,6 +369,13 @@ const ProjectsPage: React.FC = () => {
       <main className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
         {/* Header */}
         <div className="mb-16">
+          <a
+            href="/"
+            className="inline-flex items-center gap-1.5 text-[10px] font-mono text-zinc-500 hover:text-emerald-400 transition-colors mb-6"
+          >
+            <ArrowLeft className="w-3 h-3" />
+            <span>BACK_TO_HOME</span>
+          </a>
           <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest bg-emerald-950/20 border border-emerald-500/10 px-2 py-0.5 rounded">
             ALL PROJECTS
           </span>
@@ -402,15 +409,13 @@ const ProjectsPage: React.FC = () => {
               >
                 <div>
                   {/* Project image */}
-                  {proj.image && (
-                    <div className="w-full aspect-video rounded overflow-hidden border border-zinc-800 mb-4 bg-zinc-900">
-                      <img
-                        src={proj.image}
-                        alt={proj.title}
-                        className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
-                      />
-                    </div>
-                  )}
+                  <div className="w-full aspect-video rounded overflow-hidden border border-zinc-800 mb-4 bg-zinc-900">
+                    <img
+                      src={proj.image || IMG}
+                      alt={proj.title}
+                      className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
+                    />
+                  </div>
 
                   <div className="flex items-center justify-between pb-3 border-b border-zinc-900 mb-4">
                     <span className="text-[9px] font-mono text-emerald-400 uppercase tracking-widest bg-emerald-950/30 border border-emerald-500/10 px-2 py-0.5 rounded">
